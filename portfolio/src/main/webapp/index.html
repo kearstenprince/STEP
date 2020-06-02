@@ -4,10 +4,13 @@
         <title>Page Title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
         <style>
             /* Style the body */
             body {
+            background-image: url('/images/sunset.jpg');
             font-family: Arial;
             margin: 0;
             }
@@ -25,6 +28,13 @@
 
             /* Page Content */
             .content {padding:20px;}
+
+            img {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            z-index: -1;
+            }
         </style>
     </head>
     <body>
@@ -51,47 +61,19 @@
             zip lining, etc. I want to go sky diving for my birthday.
         </p>
         </div>
+        <img src="/images/IMG_3814.jpeg" alt="Selfie of Kearsten" style="width:300px;height:300px;">
+
+        <!-- Load font awesome icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- The social media icon bar -->
+        <div class="icon-bar">
+        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="google"><i class="fa fa-google"></i></a>
+        <a href="https://www.linkedin.com/in/kearstenprince/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+        <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
+        </div>
 
     </body>
-
-    <meta charset="UTF-8">>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-
-  <body>
-    <div id="content">
-        
-      <style>
-        body {
-        background-image: url('/images/sunset.jpg');
-        }  
-      </style>
-      <head>
-      <style>
-      img {
-        position: relative;
-        left: 0px;
-        top: 0px;
-        z-index: -1;
-        }
-      </style>
-      </head>
-      <body>
-      <img src="/images/IMG_3814.jpeg" alt="Selfie of Kearsten" style="width:300px;height:300px;">
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-    </div>
-      <!-- Load font awesome icons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-      <!-- The social media icon bar -->
-      <div class="icon-bar">
-      <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-      <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-      <a href="#" class="google"><i class="fa fa-google"></i></a>
-      <a href="https://www.linkedin.com/in/kearstenprince/" class="linkedin"><i class="fa fa-linkedin"></i></a>
-      <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
-      </div>
-  </body>
 </html>
