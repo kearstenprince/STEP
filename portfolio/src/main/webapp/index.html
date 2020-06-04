@@ -30,50 +30,61 @@
             .content {padding:20px;}
 
             img {
-            position: relative;
+            position: absolute;
             left: 0px;
             top: 0px;
-            z-index: -1;
+            border-radius: 50%;
             }
         </style>
     </head>
     <body>
-
         <div class="header">
         <h1>Portfolio of:</h1>
         <p>Kearsten Prince</p>
         </div>
 
-        <div class="content">
-        <h1 style="color:white;">Bio</h1>
-        <p style="color:white;">I was born in Tuscaloosa, AL. I attend Alabama Agricalutural and Mechanical University.
+        <img src="/images/IMG_3814.jpeg" alt="Selfie of Kearsten" style="width:300px;height:300px;">
+
+
+
+        <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+        <button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
+        <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+        <button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+
+        <div id="Home" class="tabcontent">
+        <h3>Bio</h3>
+        <p>I was born in Tuscaloosa, AL. I attend Alabama Agricalutural and Mechanical University.
             where I study Computer Science. I am also in the Eta Kappa Tau Engineering and Technology Fraternity as well as Math club
             and the National Society of Black Engineers. I hope to join the student activities board 
-            next year, because I like to plan.
-        </p>
-        <h1 style="color:white;">Career</h1>
-        <p style="color:white;"> I want to be an actress. That is my number one goal, and computer science is my backup plan.
-            When I become an actress I would love to do supernatural/superhero movies, if not, dramas are my second choice.
-        </p>
-        <h1 style="color:white;">Hobbies</h1>
-        <p style="color:white;"> For hobbies, I like to swim. I like any water sports, because I really love
-            the water. I am also a thrill seeker, so I like rollercoasters/amusement parks, bunjee jumping,
-            zip lining, etc. I want to go sky diving for my birthday.
-        </p>
+            next year, because I like to plan.</p>
         </div>
-        <img src="/images/IMG_3814.jpeg" alt="Selfie of Kearsten" style="width:300px;height:300px;">
+
+        <div id="News" class="tabcontent">
+        <h3>Career</h3>
+        <p>I want to be an actress. That is my number one goal, and computer science is my backup plan.
+            When I become an actress I would love to do supernatural/superhero movies, if not, dramas are my second choice.</p>
+        </div>
+
+        <div id="Comments" class="tabcontent">
+        <h3>Contact</h3>
+        <p>Get in touch, or swing by for a cup of coffee.</p>
+        </div>
+
+        <div id="Hobbiies" class="tabcontent">
+        <h3>About</h3>
+        <p>For hobbies, I like to swim. I like any water sports, because I really love
+            the water. I am also a thrill seeker, so I like rollercoasters/amusement parks, bunjee jumping,
+            zip lining, etc. I want to go sky diving for my birthday.</p>
+        </div>
+
+
+        <h1 style="color:white;">Bio</h1>
+
 
         <!-- Load font awesome icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <!-- The social media icon bar -->
-        <div class="icon-bar">
-        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-        <a href="#" class="google"><i class="fa fa-google"></i></a>
-        <a href="https://www.linkedin.com/in/kearstenprince/" class="linkedin"><i class="fa fa-linkedin"></i></a>
-        <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
-        </div>
 
     </body>
 </html>
