@@ -50,3 +50,17 @@ function openPage(pageName, elmnt, color) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+async function fetchServlet(){
+    const commentList = document.getElementById("comment");
+    await fetch('/data')
+    .then(response => response.json())
+    .then((comment) => {
+        comment.forEach(comment => {
+            let newListItem = document.createElement("li");
+            newListItem.appendChild(document.createTextNode(comment.text));
+            commentList.appendChild(newListItem);
+            commentList.appendChild(document.createElement("hr"));
+            console.log("comment: " + comment.text);
+        });
+    });
+}

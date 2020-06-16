@@ -19,6 +19,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
+import java.util.List;
+import java.util.ArrayList;
+
+import com.google.appengine.api.datastore.*;
+import java.io.*;
+import java.util.*;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -26,7 +34,55 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello kip!</h1>");
+    response.setContentType("application/json;");
+    response.getWriter().println(getcomments());
   }
+  private String commentsToJson(List<Comment> comments){
+      Gson gson = new Gson();
+      return gson.toJson(comments);
+  }
+  private List<Comment> getcomments(){
+      Query query = new Query("Comment").addSort("time", SortDirection.DESCENDING);
+      List <Comment> comments = new ArrayList();
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      PreparedQuery results = datastore.prepare(query);
+
+      for(Entity entity: results.asIterable())
+      {
+          String text = (String) entity.getProperty("text");
+          long time = (long) entity.getProperty("time");
+          comments.add(new Comment(text,time));
+      }
+      return comments;
+      }
+      
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = request.getParameter("comment_post_ID");
+    if(text == null || text.equals("")){
+        return;
+    }
+
+    addComment(text, System.currentTimeMillis());
+    response.sendRedirect("/index.html");
+  }
+    private void addComment(String commentText, long time){
+        Entity commentEntity = new Entity("comment");
+        commentEntity.setProperty("text", commentText);
+        commentEntity.setProperty("time", time);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(commentEntity);
+    }
+
+    private class Comment{
+        String text;
+        long time;
+
+        Comment(String text, long time){
+            this.text = text;
+            this.time = time;
+        }
+    }
 }
+
