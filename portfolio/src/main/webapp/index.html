@@ -1,18 +1,116 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-    </div>
-  </body>
+    <head>
+        <title>Page Title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+        <style>
+            /* Style the body */
+            body {
+            background-image: url('/images/sunset.jpg');
+            font-family: Arial;
+            margin: 0;
+            }
+
+            /* Header/Logo Title */
+            .header {
+            padding: 60px;
+            text-align: center;
+            background: #28026b;
+            color: white;
+            font-family: 'Sofia';font-size: 22px;
+            font-size: 30px;
+            position: relative;
+            }
+
+            /* Page Content */
+            .content {padding:20px;}
+
+            img {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+        <h1>Portfolio of:</h1>
+        <p>Kearsten Prince</p>
+        </div>
+
+        <img src="/images/IMG_3814.jpeg" alt="Selfie of Kearsten" style="width:300px;height:300px;">
+
+
+
+        <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+        <button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
+        <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+        <button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+
+        <div id="Home" class="tabcontent">
+        <h3>Bio</h3>
+        <p>I was born in Tuscaloosa, AL. I attend Alabama Agricalutural and Mechanical University.
+            where I study Computer Science. I am also in the Eta Kappa Tau Engineering and Technology Fraternity as well as Math club
+            and the National Society of Black Engineers. I hope to join the student activities board 
+            next year, because I like to plan.</p>
+        </div>
+
+        <div id="News" class="tabcontent">
+        <h3>Career</h3>
+        <p>I want to be an actress. That is my number one goal, and computer science is my backup plan.
+            When I become an actress I would love to do supernatural/superhero movies, if not, dramas are my second choice.</p>
+        </div>
+
+        <div id="Contact" class="tabcontent">
+        <h3>Contact</h3>
+
+
+        <div id="respond">
+
+        <h3>Leave a Comment</h3>
+
+        <form action="post_comment.php" method="post" id="commentform">
+
+            <label for="comment_author" class="required">Your name</label>
+            <input type="text" name="comment_author" id="comment_author" value="" tabindex="1" required="required">
+
+            <label for="email" class="required">Your email;</label>
+            <input type="email" name="email" id="email" value="" tabindex="2" required="required">
+
+            <label for="comment" class="required">Your message</label>
+            <textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
+
+            <-- comment_post_ID value hard-coded as 1 -->
+            <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID" />
+            <input name="submit" type="submit" value="Submit comment" />
+
+        </form>
+
+        </div>
+
+
+
+        </div>
+
+        <div id="About" class="tabcontent">
+        <h3>About</h3>
+        <p>For hobbies, I like to swim. I like any water sports, because I really love
+            the water. I am also a thrill seeker, so I like rollercoasters/amusement parks, bunjee jumping,
+            zip lining, etc. I want to go sky diving for my birthday.</p>
+        </div>
+
+
+        <h1 style="color:white;">Bio</h1>
+
+
+        <!-- Load font awesome icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    </body>
 </html>
