@@ -15,6 +15,7 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,10 +33,21 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private List <String> comments = new ArrayList();
+
+  @Override
+  public void init() throws ServletException {
+        comments.add("Hello");
+        comments.add("My");
+        comments.add("name");
+        comments.add("is");
+        comments.add("Kearsten");
+        comments.add("Kearsten");
+    }
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
-    response.getWriter().println(getcomments());
+    response.getWriter().println(comments);
   }
   private String commentsToJson(List<Comment> comments){
       Gson gson = new Gson();
@@ -47,15 +59,23 @@ public class DataServlet extends HttpServlet {
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       PreparedQuery results = datastore.prepare(query);
 
-      for(Entity entity: results.asIterable())
+      /* for(Entity entity: results.asIterable())
       {
           String text = (String) entity.getProperty("text");
           long time = (long) entity.getProperty("time");
           comments.add(new Comment(text,time));
-      }
+      } */
       return comments;
       }
-      
+  /*private List <String> getCommentsMock(){
+        List <String> comments = new ArrayList();
+        comments.add("Hello");
+        comments.add("My");
+        comments.add("name");
+        comments.add("is");
+        comments.add("Kearsten");
+        return comments;
+      }*/
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
