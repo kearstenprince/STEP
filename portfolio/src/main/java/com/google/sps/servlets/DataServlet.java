@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.google.appengine.api.datastore.*;
 import java.io.*;
@@ -33,38 +34,29 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private List <String> comments = new ArrayList();
-
-  @Override
-  public void init() throws ServletException {
-        comments.add("Hello");
-        comments.add("My");
-        comments.add("name");
-        comments.add("is");
-        comments.add("Kearsten");
-        comments.add("Kearsten");
-    }
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
-    response.getWriter().println(comments);
+    Collection<Comment> comments = getcomments();
+    response.getWriter().println(commentsToJson(comments));
   }
-  private String commentsToJson(List<Comment> comments){
+  private String commentsToJson(Collection<Comment> comments){
       Gson gson = new Gson();
       return gson.toJson(comments);
   }
-  private List<Comment> getcomments(){
+  private Collection<Comment> getcomments(){
       Query query = new Query("Comment").addSort("time", SortDirection.DESCENDING);
-      List <Comment> comments = new ArrayList();
+      Collection <Comment> comments = new ArrayList();
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       PreparedQuery results = datastore.prepare(query);
 
-      /* for(Entity entity: results.asIterable())
+      for(Entity entity: results.asIterable())
       {
           String text = (String) entity.getProperty("text");
+          String name = (String) entity.getProperty("name");
           long time = (long) entity.getProperty("time");
-          comments.add(new Comment(text,time));
-      } */
+          comments.add(new Comment(text,time, name));
+      }
       return comments;
       }
   /*private List <String> getCommentsMock(){
@@ -79,18 +71,20 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String text = request.getParameter("comment_post_ID");
+    String text = request.getParameter("comment");
+    String name = request.getParameter("comment_author");
     if(text == null || text.equals("")){
         return;
     }
 
-    addComment(text, System.currentTimeMillis());
-    response.sendRedirect("/index.html");
+    addComment(text, System.currentTimeMillis(), name);
+    response.sendRedirect("/index.html#Contact");
   }
-    private void addComment(String commentText, long time){
-        Entity commentEntity = new Entity("comment");
+    private void addComment(String commentText, long time, String name){
+        Entity commentEntity = new Entity("Comment");
         commentEntity.setProperty("text", commentText);
         commentEntity.setProperty("time", time);
+        commentEntity.setProperty("name", name);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(commentEntity);
     }
@@ -98,10 +92,12 @@ public class DataServlet extends HttpServlet {
     private class Comment{
         String text;
         long time;
+        String name;
 
-        Comment(String text, long time){
+        Comment(String text, long time, String name){
             this.text = text;
             this.time = time;
+            this.name = name;
         }
     }
 }
