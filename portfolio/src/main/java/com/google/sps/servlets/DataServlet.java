@@ -59,15 +59,6 @@ public class DataServlet extends HttpServlet {
       }
       return comments;
       }
-  /*private List <String> getCommentsMock(){
-        List <String> comments = new ArrayList();
-        comments.add("Hello");
-        comments.add("My");
-        comments.add("name");
-        comments.add("is");
-        comments.add("Kearsten");
-        return comments;
-      }*/
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
