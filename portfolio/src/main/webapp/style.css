@@ -51,10 +51,10 @@ padding: 100px 20px;
 height: 100%;
 }
 
-#Home {background-color: red;}
-#News {background-color: green;}
-#Contact {background-color: blue;}
-#About {background-color: orange;}
+#Home {background-color: rgb(89, 42, 143);}
+#News {background-color: rgb(185, 14, 171);}
+#Contact {background-color: rgb(89, 42, 143);}
+#About {background-color: rgb(185, 14, 171);}
 }
 
 
